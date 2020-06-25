@@ -17,12 +17,25 @@ class BaseModel():
     # ------------------------------- #
     #           MAGIC METHODS         #
     # ------------------------------- #
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         ""
         ""
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+        if not kwargs or len(kwargs) == 0:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
+        else:
+            for key in kwargs.keys():
+                if key != '__class__':
+                    if key in ['created_at', 'updated_at']:
+                        kwargs[key] = datetime(int(kwargs[key][:4]),
+                                               int(kwargs[key][5:7]),
+                                               int(kwargs[key][8:10]),
+                                               int(kwargs[key][11:13]),
+                                               int(kwargs[key][14:16]),
+                                               int(kwargs[key][17:19]),
+                                               int(kwargs[key][20:]))
+                    setattr(self, key, kwargs[key])
 
     def __str__(self):
         """
