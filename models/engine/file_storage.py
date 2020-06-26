@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """CLASS FILE STORAGE"""
 import json
-from ..base_model import BaseModel
 from os.path import exists
 
 class FileStorage():
@@ -11,9 +10,15 @@ class FileStorage():
     ------------------
     """
 
-    __file_path = "test.json"
+    # ------------------------------- #
+    #       PUBLIC ATTRIBUTES         #
+    # ------------------------------- #
+    __file_path = "file.json"
     __objects = {}
 
+    # ------------------------------- #
+    #     PUBLIC INSTANCE METHODS     #
+    # ------------------------------- #
     def all(self):
         """
         ---------------------------
@@ -63,9 +68,16 @@ class FileStorage():
 
     def reload(self):
         """
+        ------------------------------
+        PUBLIC INSTANCE METHOD: RELOAD        
+        ------------------------------
+        DESCRIPTION:
+            Deserializes a JSON file and adds it
+            to the __objects attribute. 
         """
+        from ..base_model import BaseModel
         if exists(self.__file_path):
             with open(self.__file_path) as jsonfile:
                 deserialized = json.load(jsonfile)
             for keys in deserialized.keys():
-                self.__objects[keys] = models.base_model.BaseModel(**deserialized[keys])
+                self.__objects[keys] = BaseModel(**deserialized[keys])

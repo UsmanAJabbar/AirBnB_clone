@@ -4,16 +4,13 @@ import uuid
 from datetime import datetime
 from models import storage
 
+
 class BaseModel():
     """
     -----------------
     CLASS: BASE MODEL
     -----------------
     """
-    # ------------------------------- #
-    #       PUBLIC ATTRIBUTES         #
-    # ------------------------------- #
-
     # ------------------------------- #
     #           MAGIC METHODS         #
     # ------------------------------- #
