@@ -9,6 +9,9 @@ class HBNBCommand(cmd.Cmd):
     """AirBnB Interpreter"""
     prompt = '(hbnb) '
 
+    # ----------------------------------- #
+    #       CUSTOM BEHAVOIR METHODS       #
+    # ----------------------------------- #
     def emptyline(self):
         """
         ------------------------
@@ -21,11 +24,14 @@ class HBNBCommand(cmd.Cmd):
         """
         pass
 
+    # ----------------------------------- #
+    #           CONSOLE COMMANDS          #
+    # ----------------------------------- #
     def do_quit(self, arg):
         """
--------------
-HELP: DO QUIT
--------------
+----------------
+COMMAND: DO QUIT
+----------------
 DESCRIPTION:
     Allows you to exit the console.
 NOTES:
@@ -35,9 +41,9 @@ NOTES:
 
     def do_EOF(self, arg):
         """
-------------
-HELP: DO EOF
-------------
+---------------
+COMMAND: DO EOF
+---------------
 DESCRIPTION:
     Allows you to exit the console.
 NOTES:
@@ -47,9 +53,9 @@ NOTES:
 
     def do_create(self, arg):
         """
--------------------
-FUNCTION: DO_CREATE
--------------------
+------------------
+COMMAND: DO_CREATE
+------------------
 DESCRIPTION:
     Creates a new instance of BaseModel
     saves it to a JSON file, and prints
@@ -66,32 +72,178 @@ DESCRIPTION:
 
     def do_show(self, arg):
         """
------------------
-FUNCTION: DO_SHOW
------------------
+----------------
+COMMAND: DO_SHOW
+----------------
 DESCRIPTION:
     Prints out a string representation
     of any instance given that it exists
         """
+
+        # Checks if create is being passed args
         if arg == '':
             print("** class name missing **")
             return
 
+        # At least one arg has been passed, break
+        # the input up into a list of words
         args = self.parse(arg)
+
+        # args[0] = Classname | args[1] = UUID
         if args[0] != 'BaseModel':
             print("** class doesn't exist **")
             return
-        print(args)
+
+        # Check if we actually have a UUID
         if len(args) < 2:
             print("** instance id missing **")
             return
+
+        # Alright, we have the class and UUID, lets pull
+        # a copy of all instances
         dict_of_instances = storage.all()
 
-        if args[0] + '.' + args[1] not in dict_of_instances:
+        class_uuid = args[0] + '.' + args[1]
+        # Check if we have that UUID in our list of instances
+        if class_uuid not in dict_of_instances:
             print("** no instance found **")
         else:
-            print(dict_of_instances[args[0] + '.' + args[1]])
+            print(dict_of_instances[class_uuid])
 
+    def do_destroy(self, arg):
+        """
+-------------------
+COMMAND: DO_DESTROY
+-------------------
+DESCRIPTION:
+    Deletes an instance if it exists
+        """
+
+        # Checks if create is being passed args
+        if arg == '':
+            print("** class name missing **")
+            return
+
+        # At least one arg has been passed, break
+        # the input up into a list of words
+        args = self.parse(arg)
+
+        # args[0] = Classname | args[1] = UUID
+        if args[0] != 'BaseModel':
+            print("** class doesn't exist **")
+            return
+
+        # Check if we actually have a UUID
+        if len(args) < 2:
+            print("** instance id missing **")
+            return
+
+        # Alright, we have the class and UUID, lets pull
+        # a copy of all instances
+        dict_of_instances = storage.all()
+
+        class_uuid = args[0] + '.' + args[1]
+        # Check if we have that UUID in our list of instances
+        if class_uuid not in dict_of_instances:
+            print("** no instance found **")
+        else:
+            del dict_of_instances[class_uuid]
+
+    def do_all(self, arg):
+        """
+----------------
+COMMAND: DO_ALL
+----------------
+DESCRIPTION:
+    Prints out all the instances stored.
+NOTES:
+    Also capable of specifically printing out
+    a given class
+        """
+        # If we don't have an arg, print everything
+        if arg == '':
+            print(storage.all())
+            return
+
+        # We do have an arg, pull everything out of console in
+        args = self.parse(arg)
+
+        if args[0] != 'BaseModel':
+            print("** class doesn't exist **")
+        else:
+            dict_of_instances = storage.all()
+            list_of_keys = list(dict_of_instances.keys())
+            random_list = []
+
+            for keys in list_of_keys:
+                if 'BaseModel' in keys:
+                    random_list.append(str(dict_of_instances[keys]))
+            print(random_list)
+
+    def do_update(self, arg):
+        """
+------------------
+COMMAND: DO_UPDATE
+------------------
+DESCRIPTION:
+    Updates a given instance attribute.
+NOTES
+    Usage: update [class_name] [uuid] [key] [value]
+    "update BaseModel 1234-1234-1234 email "aibnb@holbertonschool.com"
+        """
+        # Check if update is getting any arguments
+        if arg == '':
+            print("** class name missing **")
+            return
+
+        # Args are present, break them down into seperate words
+        args = self.parse(arg)
+
+        # Check if the class name exists
+        if args[0] != 'BaseModel':
+            print("** class doesn't exist **")
+            return
+
+        # Check if the ID is missing
+        if len(args) < 2:
+            print("** instance id missing **")
+            return
+
+        # Check if the UUID exists of that class
+        # Alright, we have the class and UUID, lets pull
+        # a copy of all instances
+        dict_of_instances = storage.all()
+
+        class_uuid = args[0] + '.' + args[1]
+        # Check if we have that UUID in our list of instances
+        if class_uuid not in dict_of_instances:
+            print("** no instance found **")
+            return
+
+        # Check if attribute's given
+        if len(args) < 3:
+            print("** attribute name missing **")
+            return
+
+        # Check if value for the attribute's given
+        if len(args) < 4:
+            print("** value missing **")
+            return
+
+        # Remove Extra Quotation Marks
+        if args[3][0] == '"' and args[3][-1] == '"':
+            args[3] = args[3][1:-1]
+        # Check if its a float
+        elif '.' in args[3]:
+            args[3] = float(args[3])
+        else:
+            args[3] = int(args[3])
+
+        setattr(dict_of_instances[class_uuid], args[2], args[3])
+
+    # ----------------------------------- #
+    #       CUSTOM HELPER METHODS         #
+    # ----------------------------------- #
     def parse(self, cons_str):
         """
         ---------------
@@ -103,16 +255,7 @@ DESCRIPTION:
         ARGS:
             @cons_str: string passed by the console
         """
-        buffer = ""
-        list_of_words = []
-
-        for i in range(len(cons_str)):
-            if cons_str[i] != " ":
-                buffer += cons_str[i]
-            if cons_str[i] == " " or (i + 1) == len(cons_str):
-                if buffer != "":
-                    list_of_words.append(buffer)
-                    buffer = ""
+        list_of_words = cons_str.split(" ")
         return list_of_words
 
 if __name__ == '__main__':
