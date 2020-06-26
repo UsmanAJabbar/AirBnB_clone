@@ -77,6 +77,11 @@ class FileStorage():
         """
         from ..base_model import BaseModel
         from ..user import User
+        from ..place import Place
+        from ..state import State
+        from ..city import City
+        from ..amenity import Amenity
+        from ..review import Review
 
         if exists(self.__file_path):
             with open(self.__file_path) as jsonfile:
@@ -86,3 +91,13 @@ class FileStorage():
                     self.__objects[keys] = BaseModel(**deserialized[keys])
                 elif deserialized[keys]['__class__'] == "User":
                     self.__objects[keys] = User(**deserialized[keys])
+                elif deserialized[keys]['__class__'] == "Place":
+                    self.__objects[keys] = Place(**deserialized[keys])
+                elif deserialized[keys]['__class__'] == "State":
+                    self.__objects[keys] = State(**deserialized[keys])
+                elif deserialized[keys]['__class__'] == "City":
+                    self.__objects[keys] = City(**deserialized[keys])
+                elif deserialized[keys]['__class__'] == "Amenity":
+                    self.__objects[keys] = Amenity(**deserialized[keys])
+                elif deserialized[keys]['__class__'] == "Review":
+                    self.__objects[keys] = Review(**deserialized[keys])

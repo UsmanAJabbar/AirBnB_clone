@@ -4,6 +4,11 @@ import cmd
 from models import storage
 from models.base_model import BaseModel
 from models.user import User
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
@@ -72,6 +77,26 @@ DESCRIPTION:
             instance = User()
             instance.save()
             print(instance.id)
+        elif arg == 'Place':
+            instance = Place()
+            instance.save()
+            print(instance.id)
+        elif arg == 'State':
+            instance = State()
+            instance.save()
+            print(instance.id)
+        elif arg == 'City':
+            instance = City()
+            instance.save()
+            print(instance.id)
+        elif arg == 'Amenity':
+            instance = Amenity()
+            instance.save()
+            print(instance.id)
+        elif arg == 'Review':
+            instance = Review()
+            instance.save()
+            print(instance.id)
         else:
             print("** class doesn't exist **")
 
@@ -95,7 +120,7 @@ DESCRIPTION:
         args = self.parse(arg)
 
         # args[0] = Classname | args[1] = UUID
-        if args[0] not in ['BaseModel', 'User']:
+        if args[0] not in ['BaseModel', 'User', 'Place', 'State', 'City', 'Amenity', 'Review']:
             print("** class doesn't exist **")
             return
 
@@ -134,7 +159,7 @@ DESCRIPTION:
         args = self.parse(arg)
 
         # args[0] = Classname | args[1] = UUID
-        if args[0] not in ['BaseModel', 'User']:
+        if args[0] not in ['BaseModel', 'User', 'Place', 'State', 'City', 'Amenity', 'Review']:
             print("** class doesn't exist **")
             return
 
@@ -173,7 +198,7 @@ NOTES:
         # We do have an arg, pull everything out of console in
         args = self.parse(arg)
 
-        if args[0] not in ['BaseModel', 'User']:
+        if args[0] not in ['BaseModel', 'User', 'Place', 'State', 'City', 'Amenity', 'Review']:
             print("** class doesn't exist **")
         else:
             dict_of_instances = storage.all()
@@ -204,7 +229,7 @@ NOTES
         args = self.parse(arg)
 
         # Check if the class name exists
-        if args[0] not in ['BaseModel', 'User']:
+        if args[0] not in ['BaseModel', 'User', 'Place', 'State', 'City', 'Amenity', 'Review']:
             print("** class doesn't exist **")
             return
 
