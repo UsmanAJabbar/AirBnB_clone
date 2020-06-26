@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Hippity Hoppotus, This Docstring Doesn't Rhyme"""
+"""Y U Do Dis?"""
 from models.base_model import BaseModel
 
 

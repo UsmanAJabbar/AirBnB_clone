@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Hippity Hoppotus, This Docstring Doesn't Rhyme"""
+"""How to write DocStrings 101"""
 from models.base_model import BaseModel
 
 

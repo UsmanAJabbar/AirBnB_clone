@@ -73,8 +73,8 @@ class BaseModel():
         ARGS:
             @self: current instance
         """
-        storage.save()
         self.updated_at = datetime.now()
+        storage.save()
 
     def to_dict(self):
         """

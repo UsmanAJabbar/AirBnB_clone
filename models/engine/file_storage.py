@@ -73,8 +73,10 @@ class FileStorage():
         PUBLIC INSTANCE METHOD: RELOAD
         ------------------------------
         DESCRIPTION:
-            Deserializes a JSON file and adds it
-            to the __objects attribute.
+            Deserializes a JSON file, loads up
+            and loads up all of the instances
+            found in the file into the attribute
+            '__objects'
         """
         from ..base_model import BaseModel
         from ..user import User
@@ -102,3 +104,14 @@ class FileStorage():
                     self.__objects[keys] = Amenity(**deserialized[keys])
                 elif deserialized[keys]['__class__'] == "Review":
                     self.__objects[keys] = Review(**deserialized[keys])
+
+#            f_cls = [BaseModel, User, Place, State,
+ #                    City, Amenity, Review]
+  #          cls = ["BaseModel", "User", "Place", "State",
+   #                "City", "Amenity", "Review"]
+#
+ #           for keys in deserialized.keys():
+  #              for i in range(len(cls)):
+   #                 if deserialized[keys]['__class__'] in cls[i]:
+    #                    self.__objects[keys] = f_cls[i](**deserialized[keys])
+     #                   break
