@@ -3,6 +3,7 @@
 import json
 from os.path import exists
 
+
 class FileStorage():
     """
     ------------------
@@ -69,11 +70,11 @@ class FileStorage():
     def reload(self):
         """
         ------------------------------
-        PUBLIC INSTANCE METHOD: RELOAD        
+        PUBLIC INSTANCE METHOD: RELOAD
         ------------------------------
         DESCRIPTION:
             Deserializes a JSON file and adds it
-            to the __objects attribute. 
+            to the __objects attribute.
         """
         from ..base_model import BaseModel
         from ..user import User

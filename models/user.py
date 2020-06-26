@@ -2,6 +2,7 @@
 """ YEEEEAAAAHHH """
 from models.base_model import BaseModel
 
+
 class User(BaseModel):
     """ I'm a user!!! Hooray!!! """
     email = ""

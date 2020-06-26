@@ -120,7 +120,8 @@ DESCRIPTION:
         args = self.parse(arg)
 
         # args[0] = Classname | args[1] = UUID
-        if args[0] not in ['BaseModel', 'User', 'Place', 'State', 'City', 'Amenity', 'Review']:
+        if args[0] not in ['BaseModel', 'User', 'Place', 'State', 'City',
+                           'Amenity', 'Review']:
             print("** class doesn't exist **")
             return
 
@@ -159,7 +160,8 @@ DESCRIPTION:
         args = self.parse(arg)
 
         # args[0] = Classname | args[1] = UUID
-        if args[0] not in ['BaseModel', 'User', 'Place', 'State', 'City', 'Amenity', 'Review']:
+        if args[0] not in ['BaseModel', 'User', 'Place', 'State', 'City',
+                           'Amenity', 'Review']:
             print("** class doesn't exist **")
             return
 
@@ -198,7 +200,8 @@ NOTES:
         # We do have an arg, pull everything out of console in
         args = self.parse(arg)
 
-        if args[0] not in ['BaseModel', 'User', 'Place', 'State', 'City', 'Amenity', 'Review']:
+        if args[0] not in ['BaseModel', 'User', 'Place', 'State', 'City',
+                           'Amenity', 'Review']:
             print("** class doesn't exist **")
         else:
             dict_of_instances = storage.all()
@@ -229,7 +232,8 @@ NOTES
         args = self.parse(arg)
 
         # Check if the class name exists
-        if args[0] not in ['BaseModel', 'User', 'Place', 'State', 'City', 'Amenity', 'Review']:
+        if args[0] not in ['BaseModel', 'User', 'Place', 'State', 'City',
+                           'Amenity', 'Review']:
             print("** class doesn't exist **")
             return
 
