@@ -76,8 +76,13 @@ class FileStorage():
             to the __objects attribute. 
         """
         from ..base_model import BaseModel
+        from ..user import User
+
         if exists(self.__file_path):
             with open(self.__file_path) as jsonfile:
                 deserialized = json.load(jsonfile)
             for keys in deserialized.keys():
-                self.__objects[keys] = BaseModel(**deserialized[keys])
+                if deserialized[keys]['__class__'] == "BaseModel":
+                    self.__objects[keys] = BaseModel(**deserialized[keys])
+                elif deserialized[keys]['__class__'] == "User":
+                    self.__objects[keys] = User(**deserialized[keys])

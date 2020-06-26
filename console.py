@@ -3,6 +3,7 @@
 import cmd
 from models import storage
 from models.base_model import BaseModel
+from models.user import User
 
 
 class HBNBCommand(cmd.Cmd):
@@ -67,6 +68,10 @@ DESCRIPTION:
             instance = BaseModel()
             instance.save()
             print(instance.id)
+        elif arg == 'User':
+            instance = User()
+            instance.save()
+            print(instance.id)
         else:
             print("** class doesn't exist **")
 
@@ -90,7 +95,7 @@ DESCRIPTION:
         args = self.parse(arg)
 
         # args[0] = Classname | args[1] = UUID
-        if args[0] != 'BaseModel':
+        if args[0] not in ['BaseModel', 'User']:
             print("** class doesn't exist **")
             return
 
@@ -129,7 +134,7 @@ DESCRIPTION:
         args = self.parse(arg)
 
         # args[0] = Classname | args[1] = UUID
-        if args[0] != 'BaseModel':
+        if args[0] not in ['BaseModel', 'User']:
             print("** class doesn't exist **")
             return
 
@@ -168,15 +173,14 @@ NOTES:
         # We do have an arg, pull everything out of console in
         args = self.parse(arg)
 
-        if args[0] != 'BaseModel':
+        if args[0] not in ['BaseModel', 'User']:
             print("** class doesn't exist **")
         else:
             dict_of_instances = storage.all()
-            list_of_keys = list(dict_of_instances.keys())
             random_list = []
 
-            for keys in list_of_keys:
-                if 'BaseModel' in keys:
+            for keys in dict_of_instances.keys():
+                if args[0] in keys:
                     random_list.append(str(dict_of_instances[keys]))
             print(random_list)
 
@@ -200,7 +204,7 @@ NOTES
         args = self.parse(arg)
 
         # Check if the class name exists
-        if args[0] != 'BaseModel':
+        if args[0] not in ['BaseModel', 'User']:
             print("** class doesn't exist **")
             return
 
@@ -259,5 +263,4 @@ NOTES
         return list_of_words
 
 if __name__ == '__main__':
-    com = HBNBCommand()
-    com.cmdloop()
+    HBNBCommand().cmdloop()
