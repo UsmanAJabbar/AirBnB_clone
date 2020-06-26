@@ -1,9 +1,8 @@
 #!/usr/bin/python3
 """BaseModel"""
-from datetime import datetime
 import uuid
+from datetime import datetime
 from models import storage
-
 
 class BaseModel():
     """
@@ -77,8 +76,8 @@ class BaseModel():
         ARGS:
             @self: current instance
         """
-        self.updated_at = datetime.now()
         storage.save()
+        self.updated_at = datetime.now()
 
     def to_dict(self):
         """

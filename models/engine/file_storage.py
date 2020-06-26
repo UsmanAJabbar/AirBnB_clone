@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 """CLASS FILE STORAGE"""
 import json
-from models.base_model import BaseModel
+from ..base_model import BaseModel
 from os.path import exists
 
-class FileStorage(BaseModel):
+class FileStorage():
     """
     ------------------
     CLASS: FileStorage
@@ -68,4 +68,4 @@ class FileStorage(BaseModel):
             with open(self.__file_path) as jsonfile:
                 deserialized = json.load(jsonfile)
             for keys in deserialized.keys():
-                self.__objects[keys] = BaseModel(**deserialized[keys])
+                self.__objects[keys] = models.base_model.BaseModel(**deserialized[keys])
