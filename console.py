@@ -41,6 +41,7 @@ COMMAND: DO QUIT
 DESCRIPTION:
     Allows you to exit the console.
 NOTES:
+    Usage: exit
     Also see, EOF.
         """
         exit()
@@ -53,6 +54,7 @@ COMMAND: DO EOF
 DESCRIPTION:
     Allows you to exit the console.
 NOTES:
+    Usage: EOF
     Also see, quit.
         """
         exit()
@@ -66,6 +68,8 @@ DESCRIPTION:
     Creates a new instance of BaseModel
     saves it to a JSON file, and prints
     the unique ID generated.
+NOTES:
+    Usage: create [class_name]
         """
         if not arg or len(arg) == 0:
             print("** class name missing **")
@@ -108,6 +112,8 @@ COMMAND: DO_SHOW
 DESCRIPTION:
     Prints out a string representation
     of any instance given that it exists
+NOTES:
+    Usage: show [class_name] [UUID]
         """
 
         # Checks if create is being passed args
@@ -148,6 +154,8 @@ COMMAND: DO_DESTROY
 -------------------
 DESCRIPTION:
     Deletes an instance if it exists
+NOTES:
+    Usage: destroy [class_name] [UUID]
         """
 
         # Checks if create is being passed args
@@ -187,10 +195,17 @@ DESCRIPTION:
 COMMAND: DO_ALL
 ----------------
 DESCRIPTION:
-    Prints out all the instances stored.
+    Prints out a string representation of all the
+    instances stored.
 NOTES:
-    Also capable of specifically printing out
-    a given class
+    If an class name is given prints out instances
+    of that specific class.
+
+    If no arguments are passed to all, all instances
+    are expected to be printed.
+
+    USAGE: all | all [class_name]
+    Example - "all" | "all BaseModel"
         """
         # If we don't have an arg, print everything
         if arg == '':
@@ -221,7 +236,7 @@ DESCRIPTION:
     Updates a given instance attribute.
 NOTES
     Usage: update [class_name] [uuid] [key] [value]
-    "update BaseModel 1234-1234-1234 email "aibnb@holbertonschool.com"
+    Example - "update BaseModel 1234-1234-1234 email "aibnb@holbertonschool.com"
         """
         # Check if update is getting any arguments
         if arg == '':
