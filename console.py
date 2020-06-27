@@ -58,6 +58,7 @@ NOTES:
     Usage: EOF
     Also see, quit.
         """
+        print()
         exit()
 
     def do_create(self, arg):
@@ -81,15 +82,15 @@ NOTES:
 
         # Create a list of instance calls that we're going
         # to use in the loop below
-        f_classes = [BaseModel(), User(), Place(), State(),
-                     City(), Amenity(), Review()]
+        f_classes = [BaseModel, User, Place, State,
+                     City, Amenity, Review]
 
         # Since self.classes and f_classes and are in the
         # same order, we call f_classes while we compare
         # the string versions of f_classes(aka self.classes)
         for index in range(len(f_classes)):
             if self.classes[index] == arg:
-                instance = f_classes[index]
+                instance = f_classes[index]()
                 print(instance.id)
                 instance.save()
                 return

@@ -89,29 +89,13 @@ class FileStorage():
         if exists(self.__file_path):
             with open(self.__file_path) as jsonfile:
                 deserialized = json.load(jsonfile)
-            for keys in deserialized.keys():
-                if deserialized[keys]['__class__'] == "BaseModel":
-                    self.__objects[keys] = BaseModel(**deserialized[keys])
-                elif deserialized[keys]['__class__'] == "User":
-                    self.__objects[keys] = User(**deserialized[keys])
-                elif deserialized[keys]['__class__'] == "Place":
-                    self.__objects[keys] = Place(**deserialized[keys])
-                elif deserialized[keys]['__class__'] == "State":
-                    self.__objects[keys] = State(**deserialized[keys])
-                elif deserialized[keys]['__class__'] == "City":
-                    self.__objects[keys] = City(**deserialized[keys])
-                elif deserialized[keys]['__class__'] == "Amenity":
-                    self.__objects[keys] = Amenity(**deserialized[keys])
-                elif deserialized[keys]['__class__'] == "Review":
-                    self.__objects[keys] = Review(**deserialized[keys])
+            f_cls = [BaseModel, User, Place, State,
+                     City, Amenity, Review]
+            cls = ["BaseModel", "User", "Place", "State",
+                   "City", "Amenity", "Review"]
 
-#            f_cls = [BaseModel, User, Place, State,
- #                    City, Amenity, Review]
-  #          cls = ["BaseModel", "User", "Place", "State",
-   #                "City", "Amenity", "Review"]
-#
- #           for keys in deserialized.keys():
-  #              for i in range(len(cls)):
-   #                 if deserialized[keys]['__class__'] in cls[i]:
-    #                    self.__objects[keys] = f_cls[i](**deserialized[keys])
-     #                   break
+            for keys in deserialized.keys():
+                for i in range(len(cls)):
+                    if deserialized[keys]['__class__'] == cls[i]:
+                        self.__objects[keys] = f_cls[i](**deserialized[keys])
+                        break
