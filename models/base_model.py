@@ -34,13 +34,8 @@ class BaseModel():
             for key in kwargs.keys():
                 if key != '__class__':
                     if key in ['created_at', 'updated_at']:
-                        kwargs[key] = datetime(int(kwargs[key][:4]),
-                                               int(kwargs[key][5:7]),
-                                               int(kwargs[key][8:10]),
-                                               int(kwargs[key][11:13]),
-                                               int(kwargs[key][14:16]),
-                                               int(kwargs[key][17:19]),
-                                               int(kwargs[key][20:]))
+                        kwargs[key] = datetime.strptime(kwargs[key], "\
+%Y-%m-%dT%H:%M:%S.%f")
                     setattr(self, key, kwargs[key])
 
     def __str__(self):
