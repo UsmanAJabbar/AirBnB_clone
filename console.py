@@ -14,8 +14,9 @@ from models.review import Review
 class HBNBCommand(cmd.Cmd):
     """AirBnB Interpreter"""
     prompt = '(hbnb) '
-    classes = ['BaseModel', 'User', 'Place', 'State', 'City', 'Amenity',
-               'Review']
+    classes = {'BaseModel': BaseModel, 'User': User, 'Place': Place,
+               'State': State, 'City': City, 'Amenity': Amenity,
+               'Review': Review}
 
     # ----------------------------------- #
     #       CUSTOM BEHAVOIR METHODS       #
@@ -76,21 +77,13 @@ NOTES:
         if not arg or len(arg) == 0:
             print("** class name missing **")
             return
-        if arg not in self.classes:
+        if arg not in self.classes.keys():
             print("** class doesn't exist **")
             return
 
-        # Create a list of instance calls that we're going
-        # to use in the loop below
-        f_classes = [BaseModel, User, Place, State,
-                     City, Amenity, Review]
-
-        # Since self.classes and f_classes and are in the
-        # same order, we call f_classes while we compare
-        # the string versions of f_classes(aka self.classes)
-        for index in range(len(f_classes)):
-            if self.classes[index] == arg:
-                instance = f_classes[index]()
+        for key in self.classes.keys():
+            if key == arg:
+                instance = self.classes[key]()
                 print(instance.id)
                 instance.save()
                 return
@@ -115,8 +108,7 @@ NOTES:
         # the input up into a list of words
         args = self.parse(arg)
 
-        parsed_class_name = args[0]
-        if parsed_class_name not in self.classes:
+        if args[0] not in self.classes.keys():
             print("** class doesn't exist **")
             return
 
@@ -128,11 +120,10 @@ NOTES:
         # Alright, we have the class and UUID, lets pull
         # a copy of all instances
         dict_of_instances = storage.all()
-        parsed_uuid = args[1]
 
         # Check if we have that UUID in our list of instances
-        class_uuid_key = parsed_class_name + '.' + parsed_uuid
-        if class_uuid_key not in dict_of_instances:
+        class_uuid_key = args[0] + '.' + args[1]
+        if class_uuid_key not in dict_of_instances.keys():
             print("** no instance found **")
         else:
             print(dict_of_instances[class_uuid_key])
@@ -157,8 +148,7 @@ NOTES:
         # the input up into a list of words
         args = self.parse(arg)
 
-        parsed_class_name = args[0]
-        if parsed_class_name not in self.classes:
+        if args[0] not in self.classes.keys():
             print("** class doesn't exist **")
             return
 
@@ -168,16 +158,16 @@ NOTES:
             return
 
         # Alright, we have the class and UUID, lets pull
-        # a copy of all instances, and rename args[1]
+        # a copy of all instances
         dict_of_instances = storage.all()
-        parsed_uuid = args[1]
 
         # Check if we have that UUID in our list of instances
-        class_uuid_key = parsed_class_name + '.' + parsed_uuid
-        if class_uuid_key not in dict_of_instances:
+        class_uuid_key = args[0] + '.' + args[1]
+        if class_uuid_key not in dict_of_instances.keys():
             print("** no instance found **")
         else:
             del dict_of_instances[class_uuid_key]
+            storage.save()
 
     def do_all(self, arg):
         """
@@ -206,14 +196,14 @@ NOTES:
         args = self.parse(arg)
 
         parsed_class_name = args[0]
-        if parsed_class_name not in self.classes:
+        if parsed_class_name not in self.classes.keys():
             print("** class doesn't exist **")
         else:
             dict_of_instances = storage.all()
             instances = []
 
             for keys in dict_of_instances.keys():
-                if parsed_class_name in keys:
+                if parsed_class_name == dict_of_instances[keys].__class__.__name__:
                     instances.append(str(dict_of_instances[keys]))
             print(instances)
 
@@ -238,7 +228,7 @@ NOTES
 
         # Check if the class name exists
         parsed_class_name = args[0]
-        if parsed_class_name not in self.classes:
+        if parsed_class_name not in self.classes.keys():
             print("** class doesn't exist **")
             return
 
@@ -254,7 +244,7 @@ NOTES
 
         # Check if we have that UUID in our list of instances
         class_uuid_key = parsed_class_name + '.' + parsed_uuid
-        if class_uuid_key not in dict_of_instances:
+        if class_uuid_key not in dict_of_instances.keys():
             print("** no instance found **")
             return
 
@@ -281,7 +271,7 @@ NOTES
             value = int(value)
 
         setattr(dict_of_instances[class_uuid_key], key, value)
-        storage.save()
+        dict_of_instances[class_uuid_key].save()
 
     # ----------------------------------- #
     #       CUSTOM HELPER METHODS         #
@@ -297,8 +287,7 @@ NOTES
         ARGS:
             @cons_str: string passed by the console
         """
-        list_of_words = console_in.split(" ")
-        return list_of_words
+        return console_in.split(" ")
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
