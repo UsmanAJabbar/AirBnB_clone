@@ -89,13 +89,13 @@ class FileStorage():
         if exists(self.__file_path):
             with open(self.__file_path) as jsonfile:
                 deserialized = json.load(jsonfile)
-            f_cls = [BaseModel, User, Place, State,
-                     City, Amenity, Review]
-            cls = ["BaseModel", "User", "Place", "State",
-                   "City", "Amenity", "Review"]
+
+            d_cls = {"BaseModel": BaseModel, "User": User, "Place": Place,
+                     "State": State, "City": City, "Amenity": Amenity,
+                     "Review": Review}
 
             for keys in deserialized.keys():
-                for i in range(len(cls)):
-                    if deserialized[keys]['__class__'] == cls[i]:
-                        self.__objects[keys] = f_cls[i](**deserialized[keys])
-                        break
+                cls_name = deserialized[keys]['__class__']
+                if cls_name in d_cls.keys():
+                    self.__objects = d_cls[cls_name](**deserialized[keys])
+                    break
