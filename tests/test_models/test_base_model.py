@@ -23,13 +23,13 @@ class TestBaseModel(unittest.TestCase):
 
         # test blank created_at
         self.assertIsInstance(subject.created_at, datetime.datetime)
-        self.assertLess(subject.created_at, time2)
-        self.assertGreater(subject.created_at, time1)
+        self.assertLessEqual(subject.created_at, time2)
+        self.assertGreaterEqual(subject.created_at, time1)
 
         # test blank updated_at
         self.assertIsInstance(subject.updated_at, datetime.datetime)
-        self.assertLess(subject.updated_at, time2)
-        self.assertGreater(subject.updated_at, time1)
+        self.assertLessEqual(subject.updated_at, time2)
+        self.assertGreaterEqual(subject.updated_at, time1)
 
         # check added to storage
         self.assertTrue('BaseModel.' + subject.id in storage.all().keys())
