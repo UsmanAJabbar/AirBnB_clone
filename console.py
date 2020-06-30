@@ -48,6 +48,19 @@ class HBNBCommand(cmd.Cmd):
         """
         # Check if the input's empty
         if arg is not '':
+            if '.count()' in arg:
+                count = 0
+                for key in storage.all().keys():
+                    if arg[:arg.index('.')] in key:
+                        count += 1
+                print(count)
+                return ''
+
+            extr = None
+            if '{' in arg and '}' in arg and 'update' in arg:
+                extr = arg[arg.index('{') + 1:arg.index('}')]
+                arg = arg[:arg.index(',')]
+
             func_chars = ['.', '(', ')', ',']
 
             for chars in func_chars:
@@ -82,6 +95,22 @@ class HBNBCommand(cmd.Cmd):
                     if len(l_of_str) >= 3:
                         for strings in l_of_str[2:]:
                             final_str += ' ' + strings
+
+                    if extr is not None:
+                        extr = extr.replace(':', '')
+                        l_extr = extr.split(',')
+                        for i in range(len(l_extr)):
+                            l_extr[i] = l_extr[i].strip().split(' ')
+                            l_extr[i][0] = l_extr[i][0].replace("'", "")
+                            l_extr[i][0] = l_extr[i][0].replace('"',
+                                                                '').strip()
+                            l_extr[i][1] = l_extr[i][1].replace("'", '"')
+                        for l in l_extr:
+                            string = final_str + ' ' + l[0] + ' ' + l[1]
+                            if l is not l_extr[-1]:
+                                self.onecmd(string)
+                            else:
+                                final_str = string
 
                     return final_str
             return arg
@@ -345,18 +374,3 @@ NOTES
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
-
-
-# INPUT
-# User.update("38f22813-2753-4d42-b37c-57a17f1e4f88", {'first_name': "John", "age": 89})
-
-# OUTPUT TO UPDATE
-# Detect whether we have a '{' and '}'
-# If we have those, then divide them by the the comma and save them into a list_of_str_dict
-# If the first command was update, then we are going to take in
-
-# for loop running through list_of_str_dict
-# static + list_of_str_dict[i]
-
-# update User 38f22813-2753-4d42-b37c-57a17f1e4f88 first_name "John"
-# update User 38f22813-2753-4d42-b37c-57a17f1e4f88 age 89
