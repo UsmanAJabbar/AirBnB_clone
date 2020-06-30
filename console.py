@@ -46,10 +46,8 @@ class HBNBCommand(cmd.Cmd):
             as a emulated function call, then the
             precmd part's skipped.
         """
-        print("entered precmd")
         # Check if the input's empty
         if arg is not '':
-            print("Input detected")
             func_chars = ['.', '(', ')', ',']
 
             for chars in func_chars:
@@ -85,7 +83,6 @@ class HBNBCommand(cmd.Cmd):
                         for strings in l_of_str[2:]:
                             final_str += ' ' + strings
 
-                    print("Returning final_str as ", final_str)
                     return final_str
             return arg
 
