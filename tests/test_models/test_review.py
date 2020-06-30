@@ -10,6 +10,13 @@ from models import storage
 
 class TestReview(unittest.TestCase):
     """  lkjsdfhalskhf """
+    def test_attributes(self):
+        """ ksajhfdg """
+        subject = Review()
+        self.assertTrue(hasattr(subject, "place_id"))
+        self.assertTrue(hasattr(subject, "user_id"))
+        self.assertTrue(hasattr(subject, "text"))
+
     def test_init_blank(self):
         """  sakujjhdfkasjdhf """
         # test blank

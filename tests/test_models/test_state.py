@@ -10,6 +10,11 @@ from models import storage
 
 class TestState(unittest.TestCase):
     """  lkjsdfhalskhf """
+    def test_attributes(self):
+        """ skjdfhg """
+        subject = State()
+        self.assertTrue(hasattr(subject, "name"))
+
     def test_init_blank(self):
         """  sakujjhdfkasjdhf """
         # test blank

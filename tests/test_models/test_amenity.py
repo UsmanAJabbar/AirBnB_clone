@@ -10,6 +10,11 @@ from models import storage
 
 class TestAmenity(unittest.TestCase):
     """  lkjsdfhalskhf """
+    def test_attributes(self):
+        """ skjdfhg """
+        subject = Amenity()
+        self.assertTrue(hasattr(subject, "name"))
+
     def test_init_blank(self):
         """  sakujjhdfkasjdhf """
         # test blank

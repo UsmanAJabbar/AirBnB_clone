@@ -10,6 +10,14 @@ from models import storage
 
 class TestUser(unittest.TestCase):
     """  lkjsdfhalskhf """
+    def test_attributes(self):
+        """ skjdfhg """
+        subject = User()
+        self.assertTrue(hasattr(subject, "email"))
+        self.assertTrue(hasattr(subject, "password"))
+        self.assertTrue(hasattr(subject, "first_name"))
+        self.assertTrue(hasattr(subject, "last_name"))
+
     def test_init_blank(self):
         """  sakujjhdfkasjdhf """
         # test blank

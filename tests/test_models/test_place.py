@@ -10,6 +10,21 @@ from models import storage
 
 class TestPlace(unittest.TestCase):
     """  lkjsdfhalskhf """
+    def test_attributes(self):
+        """ skjdfhg """
+        subject = Place()
+        self.assertTrue(hasattr(subject, "name"))
+        self.assertTrue(hasattr(subject, "city_id"))
+        self.assertTrue(hasattr(subject, "user_id"))
+        self.assertTrue(hasattr(subject, "description"))
+        self.assertTrue(hasattr(subject, "number_rooms"))
+        self.assertTrue(hasattr(subject, "number_bathrooms"))
+        self.assertTrue(hasattr(subject, "max_guest"))
+        self.assertTrue(hasattr(subject, "price_by_night"))
+        self.assertTrue(hasattr(subject, "latitude"))
+        self.assertTrue(hasattr(subject, "longitude"))
+        self.assertTrue(hasattr(subject, "amenity_ids"))
+
     def test_init_blank(self):
         """  sakujjhdfkasjdhf """
         # test blank
