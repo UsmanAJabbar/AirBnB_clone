@@ -113,7 +113,7 @@ class HBNBCommand(cmd.Cmd):
                                 final_str = string
 
                     return final_str
-            return arg
+        return arg
 
     # ----------------------------------- #
     #           CONSOLE COMMANDS          #
