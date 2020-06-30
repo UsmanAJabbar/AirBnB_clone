@@ -72,16 +72,10 @@ class HBNBCommand(cmd.Cmd):
                     for strings in l_of_str[2:]:
                         finalstr += strings + ' '
 
-                d_cmds = {'all': self.do_all, 'create': self.do_create,
-                          'show': self.do_show, 'destroy': self.do_destroy,
-                          'update': self.do_update}
+                return finalstr
 
-                # Find the appropriate command and run it
-                for keys in d_cmds.keys():
-                    if keys == l_of_str[1]:
-                        d_cmds[keys](finalstr)
             else:
-                pass
+                return arg
 
     # ----------------------------------- #
     #           CONSOLE COMMANDS          #
