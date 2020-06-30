@@ -195,16 +195,16 @@ NOTES:
         # We do have an arg, pull everything out of console in
         args = self.parse(arg)
 
-        parsed_class_name = args[0]
-        if parsed_class_name not in self.classes.keys():
+        parsed_cls_name = args[0]
+        if parsed_cls_name not in self.classes.keys():
             print("** class doesn't exist **")
         else:
-            dict_of_instances = storage.all()
+            dict_of_inst = storage.all()
             instances = []
 
-            for keys in dict_of_instances.keys():
-                if parsed_class_name == dict_of_instances[keys].__class__.__name__:
-                    instances.append(str(dict_of_instances[keys]))
+            for keys in dict_of_inst.keys():
+                if parsed_cls_name == dict_of_inst[keys].__class__.__name__:
+                    instances.append(str(dict_of_inst[keys]))
             print(instances)
 
     def do_update(self, arg):

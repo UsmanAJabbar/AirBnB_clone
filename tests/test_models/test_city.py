@@ -38,7 +38,10 @@ class TestCity(unittest.TestCase):
     def test_init_dict(self):
         """ wlkfhf """
         # test dict
-        diction = {'updated_at': datetime.datetime(2020, 6, 27, 22, 9, 38, 171921).isoformat('T'), 'id': 'b3857b62-93fa-4bbe-97de-660506f7313b', 'created_at': datetime.datetime(2020, 6, 27, 22, 9, 38, 171827).isoformat('T')}
+        diction = {'updated_at\
+': datetime.datetime(2020, 6, 27, 22, 9, 38, 171921).isoformat('T'), 'id\
+': 'b3857b62-93fa-4bbe-97de-660506f7313b', 'created_at\
+': datetime.datetime(2020, 6, 27, 22, 9, 38, 171827).isoformat('T')}
         subject = City(**diction)
 
         # test dict id
@@ -48,11 +51,13 @@ class TestCity(unittest.TestCase):
 
         # test dict created_at
         self.assertIsInstance(subject.created_at, datetime.datetime)
-        self.assertEqual(subject.created_at.isoformat('T'), diction['created_at'])
+        self.assertEqual(subject.created_at.isoformat('T'), diction['\
+created_at'])
 
         # test dict updated_at
         self.assertIsInstance(subject.updated_at, datetime.datetime)
-        self.assertEqual(subject.updated_at.isoformat('T'), diction['updated_at'])
+        self.assertEqual(subject.updated_at.isoformat('T'), diction['\
+updated_at'])
         del subject
 
     def test_init_break(self):
@@ -68,16 +73,23 @@ class TestCity(unittest.TestCase):
         self.assertTrue('City.' + subject.id in storage.all().keys())
 
         # test invalid time
-        diction = {'updated_at': datetime.datetime(2020, 6, 27, 22, 9, 38, 171921), 'id': 'b3857b62-93fa-4bbe-97de-660506f7313b', 'created_at': datetime.datetime(2020, 6, 27, 22, 9, 38, 171827)}
+        diction = {'updated_at\
+': datetime.datetime(2020, 6, 27, 22, 9, 38, 171921), 'id\
+': 'b3857b62-93fa-4bbe-97de-660506f7313b', 'created_at\
+': datetime.datetime(2020, 6, 27, 22, 9, 38, 171827)}
         self.assertRaises(Exception, City, **diction)
         del subject
 
     def test_str(self):
         """ ksajdfhb """
         # test output
-        diction = {'updated_at': datetime.datetime(2020, 6, 27, 22, 9, 38, 171921).isoformat('T'), 'id': 'b3857b62-93fa-4bbe-97de-660506f7313b', 'created_at': datetime.datetime(2020, 6, 27, 22, 9, 38, 171827).isoformat('T')}
+        diction = {'updated_at\
+': datetime.datetime(2020, 6, 27, 22, 9, 38, 171921).isoformat('T'), 'id\
+': 'b3857b62-93fa-4bbe-97de-660506f7313b', 'created_at\
+': datetime.datetime(2020, 6, 27, 22, 9, 38, 171827).isoformat('T')}
         subject = City(**diction)
-        self.assertEqual(str(subject)[:48], "[City] (b3857b62-93fa-4bbe-97de-660506f7313b) {'")
+        self.assertEqual(str(subject)[:48], "[City] \
+(b3857b62-93fa-4bbe-97de-660506f7313b) {'")
         del subject
 
     def test_save(self):
@@ -112,7 +124,11 @@ class TestCity(unittest.TestCase):
     def test_to_dict(self):
         """ alksfh """
         # test to_dict
-        diction = {'__class__': 'City', 'updated_at': datetime.datetime(2020, 6, 27, 22, 9, 38, 171921).isoformat('T'), 'id': 'b3857b62-93fa-4bbe-97de-660506f7313b', 'created_at': datetime.datetime(2020, 6, 27, 22, 9, 38, 171827).isoformat('T')}
+        diction = {'__class__\
+': 'City', 'updated_at\
+': datetime.datetime(2020, 6, 27, 22, 9, 38, 171921).isoformat('T'), 'id\
+': 'b3857b62-93fa-4bbe-97de-660506f7313b', 'created_at\
+': datetime.datetime(2020, 6, 27, 22, 9, 38, 171827).isoformat('T')}
         subject = City(**diction)
 
         # check return
