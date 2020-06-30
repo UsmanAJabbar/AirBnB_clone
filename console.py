@@ -32,6 +32,63 @@ class HBNBCommand(cmd.Cmd):
         """
         pass
 
+    def precmd(self, arg):
+        """
+        ---------------------------
+        CUSTOM BEHAVOR FUNC: PRECMD
+        ---------------------------
+        DESCRIPTION:
+            Takes in a command, finds out whether
+            or not the command is a function call
+            and processes it accordingly.
+        NOTES:
+            If the command input in not detected
+            as a emulated function call, then the
+            precmd part's skipped.
+        """
+        print("entered precmd")
+        # Check if the input's empty
+        if arg is not '':
+            print("Input detected")
+            func_chars = ['.', '(', ')', ',']
+
+            for chars in func_chars:
+                if chars in arg:
+                    # If func_chars found in str, replace with ' '
+                    cleanup = ''
+                    for letters in arg:
+                        if letters in func_chars:
+                            cleanup += ' '
+                        else:
+                            cleanup += letters
+
+                    cleanup = cleanup.replace('  ', ' ').strip()
+
+                    # Breakup the string into a list of strings
+                    l_of_str = self.parse(cleanup)
+
+                    # Cleanup the quotes
+                    for i in range(len(l_of_str)):
+                        if l_of_str[i][0] == '"' and l_of_str[i][-1] == '"':
+                            if len(l_of_str) == 5 and i == 4:
+                                continue
+                            l_of_str[i] = l_of_str[i].replace('"', ' ').strip()
+
+                    # Generate Output String
+                    if len(l_of_str) == 1:
+                        final_str = l_of_str[0]
+
+                    elif len(l_of_str) >= 2:
+                        final_str = l_of_str[1] + ' ' + l_of_str[0]
+
+                    if len(l_of_str) >= 3:
+                        for strings in l_of_str[2:]:
+                            final_str += ' ' + strings
+
+                    print("Returning final_str as ", final_str)
+                    return final_str
+            return arg
+
     # ----------------------------------- #
     #           CONSOLE COMMANDS          #
     # ----------------------------------- #
@@ -291,3 +348,18 @@ NOTES
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
+
+
+# INPUT
+# User.update("38f22813-2753-4d42-b37c-57a17f1e4f88", {'first_name': "John", "age": 89})
+
+# OUTPUT TO UPDATE
+# Detect whether we have a '{' and '}'
+# If we have those, then divide them by the the comma and save them into a list_of_str_dict
+# If the first command was update, then we are going to take in
+
+# for loop running through list_of_str_dict
+# static + list_of_str_dict[i]
+
+# update User 38f22813-2753-4d42-b37c-57a17f1e4f88 first_name "John"
+# update User 38f22813-2753-4d42-b37c-57a17f1e4f88 age 89
