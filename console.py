@@ -32,46 +32,6 @@ class HBNBCommand(cmd.Cmd):
         """
         pass
 
-    def precmd(self, arg):
-        """
-        ---------------------------
-        CUSTOM BEHAVOR FUNC: PRECMD
-        ---------------------------
-        DESCRIPTION:
-            Takes in a command, finds out whether
-            or not the command is a function call
-            and processes it accordingly.
-        NOTES:
-            If the command input in not detected
-            as a emulated function call, then the
-            precmd part's skipped.
-        """
-        # Check if the input's empty
-        if arg is not '':
-            func_chars = ['.', '(', ')']
-            if arg in func_chars:
-
-                # If func_chars found in str, replace with ' '
-                cleanup = ''
-                for letters in arg:
-                    if letters in func_chars:
-                        cleanup += ' '
-                    else:
-                        cleanup += letters
-
-                # Breakup the string into a list of strings
-                l_of_str = self.parse(cleanup)
-                if len(l_of_str) == 1:
-                    final_str = l_of_str[1]
-                elif len(l_of_str) >= 1:
-                    final_str = l_of_str[1] + ' ' + l_of_str[0]
-                if len(l_of_str) >= 3:
-                    for strings in l_of_str[2:]:
-                        finalstr += ' ' + strings
-                return finalstr
-            else:
-                return arg
-
     # ----------------------------------- #
     #           CONSOLE COMMANDS          #
     # ----------------------------------- #
@@ -235,16 +195,16 @@ NOTES:
         # We do have an arg, pull everything out of console in
         args = self.parse(arg)
 
-        parsed_class_name = args[0]
-        if parsed_class_name not in self.classes.keys():
+        parsed_cls_name = args[0]
+        if parsed_cls_name not in self.classes.keys():
             print("** class doesn't exist **")
         else:
-            dict_of_instances = storage.all()
+            dict_of_inst = storage.all()
             instances = []
 
-            for keys in dict_of_instances.keys():
-                if parsed_class_name == dict_of_instances[keys].__class__.__name__:
-                    instances.append(str(dict_of_instances[keys]))
+            for keys in dict_of_inst.keys():
+                if parsed_cls_name == dict_of_inst[keys].__class__.__name__:
+                    instances.append(str(dict_of_inst[keys]))
             print(instances)
 
     def do_update(self, arg):

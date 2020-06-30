@@ -12,6 +12,7 @@ from models.city import City
 from models.amenity import Amenity
 from models.review import Review
 
+
 class TestFileStorage(unittest.TestCase):
     """ asmjsfb """
     def test_class_variables(self):
@@ -54,14 +55,18 @@ class TestFileStorage(unittest.TestCase):
         subject.new(tmp1)
         subject.new(tmp2)
 
-        self.assertEqual(subject.all(), {'BaseModel.' + tmp1.id: tmp1, 'BaseModel.' + tmp2.id: tmp2})
+        self.assertEqual(subject.all(), {'BaseModel.' + tmp1.id: tmp1,
+                         'BaseModel.' + tmp2.id: tmp2})
         del tmp1
         del tmp2
         del subject
 
     def test_new(self):
         """ laskdfh """
-        res = {"id": "8d8b1266-b706-4e9d-aeb9-70aae132d150", "__class__": "BaseModel", "updated_at": "2020-06-28T21:29:23.160292", "created_at": "2020-06-28T21:29:23.160254"}
+        res = {"id": "8d8b1266-b706-4e9d-aeb9-70aae132d150",
+               "__class__": "BaseModel",
+               "updated_at": "2020-06-28T21:29:23.160292",
+               "created_at": "2020-06-28T21:29:23.160254"}
         subject = FileStorage()
         to_d = []
         if os.path.exists('file.json'):
@@ -76,7 +81,8 @@ class TestFileStorage(unittest.TestCase):
         # check each class
         for cls in classes:
             subject.new(cls)
-            self.assertTrue(cls.__class__.__name__ + '.' + cls.id in subject.all())
+            self.assertIn(cls.__class__.__name__ + '.' + cls.id,
+                          subject.all())
 
         # check each key
         for cls in classes:
@@ -85,14 +91,18 @@ class TestFileStorage(unittest.TestCase):
 
         # check each object
         for i in range(len(subject.all().keys())):
-            self.assertTrue(subject.all()[list(subject.all().keys())[i]] in classes)
+            self.assertIn(subject.all()[list(subject.all().keys())[i]],
+                          classes)
         for e in classes:
             del e
         del subject
 
     def test_save(self):
         """ skljdfh """
-        res = '{"BaseModel.8d8b1266-b706-4e9d-aeb9-70aae132d150": {"id": "8d8b1266-b706-4e9d-aeb9-70aae132d150", "__class__": "BaseModel", "updated_at": "2020-06-28T21:29:23.160292", "created_at": "2020-06-28T21:29:23.160254"}}'
+        res = '{"BaseModel.8d8b1266-b706-4e9d-aeb9-70aae132d150": {"id\
+": "8d8b1266-b706-4e9d-aeb9-70aae132d150", "__class__\
+": "BaseModel", "updated_at": "2020-06-28T21:29:23.160292", "created_at\
+": "2020-06-28T21:29:23.160254"}}'
         subject = FileStorage()
         to_d = []
         if os.path.exists('file.json'):
@@ -101,7 +111,8 @@ class TestFileStorage(unittest.TestCase):
             to_d.append(subject.all()[e])
         for e in to_d:
             del subject.all()[e.__class__.__name__ + '.' + e.id]
-        tmp = BaseModel(**json.loads(res)["BaseModel.8d8b1266-b706-4e9d-aeb9-70aae132d150"])
+        tmp = BaseModel(**json.loads(res)["\
+BaseModel.8d8b1266-b706-4e9d-aeb9-70aae132d150"])
         subject.new(tmp)
 
         # test no file
@@ -124,7 +135,10 @@ class TestFileStorage(unittest.TestCase):
 
     def test_reload(self):
         """ skjdfh """
-        res = '{"BaseModel.8d8b1266-b706-4e9d-aeb9-70aae132d150": {"id": "8d8b1266-b706-4e9d-aeb9-70aae132d150", "__class__": "BaseModel", "updated_at": "2020-06-28T21:29:23.160292", "created_at": "2020-06-28T21:29:23.160254"}}'
+        res = '{"BaseModel.8d8b1266-b706-4e9d-aeb9-70aae132d150": {"id\
+": "8d8b1266-b706-4e9d-aeb9-70aae132d150", "__class__\
+": "BaseModel", "updated_at": "2020-06-28T21:29:23.160292", "created_at\
+": "2020-06-28T21:29:23.160254"}}'
         subject = FileStorage()
         to_d = []
         if os.path.exists('file.json'):
@@ -148,11 +162,13 @@ class TestFileStorage(unittest.TestCase):
         self.assertEqual(subject.all(), {})
 
         # test nonempty file
-        tmp = BaseModel(**json.loads(res)['BaseModel.8d8b1266-b706-4e9d-aeb9-70aae132d150'])
+        tmp = BaseModel(**json.loads(res)['\
+BaseModel.8d8b1266-b706-4e9d-aeb9-70aae132d150'])
         subject.new(tmp)
         subject.save()
         del subject.all()['BaseModel.8d8b1266-b706-4e9d-aeb9-70aae132d150']
         subject.reload()
-        self.assertEqual(subject.all().keys(), {'BaseModel.8d8b1266-b706-4e9d-aeb9-70aae132d150': tmp}.keys())
+        self.assertEqual(subject.all().keys(), {'\
+BaseModel.8d8b1266-b706-4e9d-aeb9-70aae132d150': tmp}.keys())
         del tmp
         del subject

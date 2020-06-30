@@ -10,6 +10,21 @@ from models import storage
 
 class TestPlace(unittest.TestCase):
     """  lkjsdfhalskhf """
+    def test_attributes(self):
+        """ skjdfhg """
+        subject = Place()
+        self.assertTrue(hasattr(subject, "name"))
+        self.assertTrue(hasattr(subject, "city_id"))
+        self.assertTrue(hasattr(subject, "user_id"))
+        self.assertTrue(hasattr(subject, "description"))
+        self.assertTrue(hasattr(subject, "number_rooms"))
+        self.assertTrue(hasattr(subject, "number_bathrooms"))
+        self.assertTrue(hasattr(subject, "max_guest"))
+        self.assertTrue(hasattr(subject, "price_by_night"))
+        self.assertTrue(hasattr(subject, "latitude"))
+        self.assertTrue(hasattr(subject, "longitude"))
+        self.assertTrue(hasattr(subject, "amenity_ids"))
+
     def test_init_blank(self):
         """  sakujjhdfkasjdhf """
         # test blank
@@ -38,7 +53,10 @@ class TestPlace(unittest.TestCase):
     def test_init_dict(self):
         """ wlkfhf """
         # test dict
-        diction = {'updated_at': datetime.datetime(2020, 6, 27, 22, 9, 38, 171921).isoformat('T'), 'id': 'b3857b62-93fa-4bbe-97de-660506f7313b', 'created_at': datetime.datetime(2020, 6, 27, 22, 9, 38, 171827).isoformat('T')}
+        diction = {'updated_at\
+': datetime.datetime(2020, 6, 27, 22, 9, 38, 171921).isoformat('T'), 'id\
+': 'b3857b62-93fa-4bbe-97de-660506f7313b', 'created_at\
+': datetime.datetime(2020, 6, 27, 22, 9, 38, 171827).isoformat('T')}
         subject = Place(**diction)
 
         # test dict id
@@ -48,11 +66,13 @@ class TestPlace(unittest.TestCase):
 
         # test dict created_at
         self.assertIsInstance(subject.created_at, datetime.datetime)
-        self.assertEqual(subject.created_at.isoformat('T'), diction['created_at'])
+        self.assertEqual(subject.created_at.isoformat('T'), diction['\
+created_at'])
 
         # test dict updated_at
         self.assertIsInstance(subject.updated_at, datetime.datetime)
-        self.assertEqual(subject.updated_at.isoformat('T'), diction['updated_at'])
+        self.assertEqual(subject.updated_at.isoformat('T'), diction['\
+updated_at'])
         del subject
 
     def test_init_break(self):
@@ -68,16 +88,23 @@ class TestPlace(unittest.TestCase):
         self.assertTrue('Place.' + subject.id in storage.all().keys())
 
         # test invalid time
-        diction = {'updated_at': datetime.datetime(2020, 6, 27, 22, 9, 38, 171921), 'id': 'b3857b62-93fa-4bbe-97de-660506f7313b', 'created_at': datetime.datetime(2020, 6, 27, 22, 9, 38, 171827)}
+        diction = {'updated_at\
+': datetime.datetime(2020, 6, 27, 22, 9, 38, 171921), 'id\
+': 'b3857b62-93fa-4bbe-97de-660506f7313b', 'created_at\
+': datetime.datetime(2020, 6, 27, 22, 9, 38, 171827)}
         self.assertRaises(Exception, Place, **diction)
         del subject
 
     def test_str(self):
         """ ksajdfhb """
         # test output
-        diction = {'updated_at': datetime.datetime(2020, 6, 27, 22, 9, 38, 171921).isoformat('T'), 'id': 'b3857b62-93fa-4bbe-97de-660506f7313b', 'created_at': datetime.datetime(2020, 6, 27, 22, 9, 38, 171827).isoformat('T')}
+        diction = {'updated_at\
+': datetime.datetime(2020, 6, 27, 22, 9, 38, 171921).isoformat('T'), 'id\
+': 'b3857b62-93fa-4bbe-97de-660506f7313b', 'created_at\
+': datetime.datetime(2020, 6, 27, 22, 9, 38, 171827).isoformat('T')}
         subject = Place(**diction)
-        self.assertEqual(str(subject)[:49], "[Place] (b3857b62-93fa-4bbe-97de-660506f7313b) {'")
+        self.assertEqual(str(subject)[:49], "[Place] \
+(b3857b62-93fa-4bbe-97de-660506f7313b) {'")
         del subject
 
     def test_save(self):
@@ -112,7 +139,11 @@ class TestPlace(unittest.TestCase):
     def test_to_dict(self):
         """ alksfh """
         # test to_dict
-        diction = {'__class__': 'Place', 'updated_at': datetime.datetime(2020, 6, 27, 22, 9, 38, 171921).isoformat('T'), 'id': 'b3857b62-93fa-4bbe-97de-660506f7313b', 'created_at': datetime.datetime(2020, 6, 27, 22, 9, 38, 171827).isoformat('T')}
+        diction = {'__class__\
+': 'Place', 'updated_at\
+': datetime.datetime(2020, 6, 27, 22, 9, 38, 171921).isoformat('T'), 'id\
+': 'b3857b62-93fa-4bbe-97de-660506f7313b', 'created_at\
+': datetime.datetime(2020, 6, 27, 22, 9, 38, 171827).isoformat('T')}
         subject = Place(**diction)
 
         # check return

@@ -10,6 +10,13 @@ from models import storage
 
 class TestReview(unittest.TestCase):
     """  lkjsdfhalskhf """
+    def test_attributes(self):
+        """ ksajhfdg """
+        subject = Review()
+        self.assertTrue(hasattr(subject, "place_id"))
+        self.assertTrue(hasattr(subject, "user_id"))
+        self.assertTrue(hasattr(subject, "text"))
+
     def test_init_blank(self):
         """  sakujjhdfkasjdhf """
         # test blank
@@ -38,7 +45,10 @@ class TestReview(unittest.TestCase):
     def test_init_dict(self):
         """ wlkfhf """
         # test dict
-        diction = {'updated_at': datetime.datetime(2020, 6, 27, 22, 9, 38, 171921).isoformat('T'), 'id': 'b3857b62-93fa-4bbe-97de-660506f7313b', 'created_at': datetime.datetime(2020, 6, 27, 22, 9, 38, 171827).isoformat('T')}
+        diction = {'updated_at\
+': datetime.datetime(2020, 6, 27, 22, 9, 38, 171921).isoformat('T'), 'id\
+': 'b3857b62-93fa-4bbe-97de-660506f7313b', 'created_at\
+': datetime.datetime(2020, 6, 27, 22, 9, 38, 171827).isoformat('T')}
         subject = Review(**diction)
 
         # test dict id
@@ -48,11 +58,13 @@ class TestReview(unittest.TestCase):
 
         # test dict created_at
         self.assertIsInstance(subject.created_at, datetime.datetime)
-        self.assertEqual(subject.created_at.isoformat('T'), diction['created_at'])
+        self.assertEqual(subject.created_at.isoformat('T'), diction['\
+created_at'])
 
         # test dict updated_at
         self.assertIsInstance(subject.updated_at, datetime.datetime)
-        self.assertEqual(subject.updated_at.isoformat('T'), diction['updated_at'])
+        self.assertEqual(subject.updated_at.isoformat('T'), diction['\
+updated_at'])
         del subject
 
     def test_init_break(self):
@@ -68,16 +80,23 @@ class TestReview(unittest.TestCase):
         self.assertTrue('Review.' + subject.id in storage.all().keys())
 
         # test invalid time
-        diction = {'updated_at': datetime.datetime(2020, 6, 27, 22, 9, 38, 171921), 'id': 'b3857b62-93fa-4bbe-97de-660506f7313b', 'created_at': datetime.datetime(2020, 6, 27, 22, 9, 38, 171827)}
+        diction = {'updated_at\
+': datetime.datetime(2020, 6, 27, 22, 9, 38, 171921), 'id\
+': 'b3857b62-93fa-4bbe-97de-660506f7313b', 'created_at\
+': datetime.datetime(2020, 6, 27, 22, 9, 38, 171827)}
         self.assertRaises(Exception, Review, **diction)
         del subject
 
     def test_str(self):
         """ ksajdfhb """
         # test output
-        diction = {'updated_at': datetime.datetime(2020, 6, 27, 22, 9, 38, 171921).isoformat('T'), 'id': 'b3857b62-93fa-4bbe-97de-660506f7313b', 'created_at': datetime.datetime(2020, 6, 27, 22, 9, 38, 171827).isoformat('T')}
+        diction = {'updated_at\
+': datetime.datetime(2020, 6, 27, 22, 9, 38, 171921).isoformat('T'), 'id\
+': 'b3857b62-93fa-4bbe-97de-660506f7313b', 'created_at\
+': datetime.datetime(2020, 6, 27, 22, 9, 38, 171827).isoformat('T')}
         subject = Review(**diction)
-        self.assertEqual(str(subject)[:50], "[Review] (b3857b62-93fa-4bbe-97de-660506f7313b) {'")
+        self.assertEqual(str(subject)[:50], "[Review] \
+(b3857b62-93fa-4bbe-97de-660506f7313b) {'")
         del subject
 
     def test_save(self):
@@ -112,7 +131,11 @@ class TestReview(unittest.TestCase):
     def test_to_dict(self):
         """ alksfh """
         # test to_dict
-        diction = {'__class__': 'Review', 'updated_at': datetime.datetime(2020, 6, 27, 22, 9, 38, 171921).isoformat('T'), 'id': 'b3857b62-93fa-4bbe-97de-660506f7313b', 'created_at': datetime.datetime(2020, 6, 27, 22, 9, 38, 171827).isoformat('T')}
+        diction = {'__class__\
+': 'Review', 'updated_at\
+': datetime.datetime(2020, 6, 27, 22, 9, 38, 171921).isoformat('T'), 'id\
+': 'b3857b62-93fa-4bbe-97de-660506f7313b', 'created_at\
+': datetime.datetime(2020, 6, 27, 22, 9, 38, 171827).isoformat('T')}
         subject = Review(**diction)
 
         # check return

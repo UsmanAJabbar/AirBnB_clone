@@ -97,5 +97,6 @@ class FileStorage():
             for keys in deserialized.keys():
                 for cls_key in cls.keys():
                     if deserialized[keys]['__class__'] == cls_key:
-                        self.__objects[keys] = cls[cls_key](**deserialized[keys])
+                        self.__objects[keys] = cls[cls_key
+                                                   ](**deserialized[keys])
                         break
