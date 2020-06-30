@@ -4,17 +4,17 @@ import os
 import time as t
 import unittest
 import datetime
-from models.base_model import BaseModel
+from models.state import State
 from models import storage
 
 
-class TestBaseModel(unittest.TestCase):
+class TestState(unittest.TestCase):
     """  lkjsdfhalskhf """
     def test_init_blank(self):
         """  sakujjhdfkasjdhf """
         # test blank
         time1 = datetime.datetime.now()
-        subject = BaseModel()
+        subject = State()
         time2 = datetime.datetime.now()
 
         # test blank id
@@ -32,14 +32,14 @@ class TestBaseModel(unittest.TestCase):
         self.assertGreaterEqual(subject.updated_at, time1)
 
         # check added to storage
-        self.assertTrue('BaseModel.' + subject.id in storage.all().keys())
+        self.assertTrue('State.' + subject.id in storage.all().keys())
         del subject
 
     def test_init_dict(self):
         """ wlkfhf """
         # test dict
         diction = {'updated_at': datetime.datetime(2020, 6, 27, 22, 9, 38, 171921).isoformat('T'), 'id': 'b3857b62-93fa-4bbe-97de-660506f7313b', 'created_at': datetime.datetime(2020, 6, 27, 22, 9, 38, 171827).isoformat('T')}
-        subject = BaseModel(**diction)
+        subject = State(**diction)
 
         # test dict id
         self.assertIsInstance(subject.id, str)
@@ -59,32 +59,32 @@ class TestBaseModel(unittest.TestCase):
         """ skjdfh """
         # test dict empty
         diction = {}
-        subject = BaseModel(**diction)
-        self.assertTrue('BaseModel.' + subject.id in storage.all().keys())
+        subject = State(**diction)
+        self.assertTrue('State.' + subject.id in storage.all().keys())
 
         # test args
         arr = ['kasjfgklsd', 'ikaugsfkj']
-        subject = BaseModel(*arr)
-        self.assertTrue('BaseModel.' + subject.id in storage.all().keys())
+        subject = State(*arr)
+        self.assertTrue('State.' + subject.id in storage.all().keys())
 
         # test invalid time
         diction = {'updated_at': datetime.datetime(2020, 6, 27, 22, 9, 38, 171921), 'id': 'b3857b62-93fa-4bbe-97de-660506f7313b', 'created_at': datetime.datetime(2020, 6, 27, 22, 9, 38, 171827)}
-        self.assertRaises(Exception, BaseModel, **diction)
+        self.assertRaises(Exception, State, **diction)
         del subject
 
     def test_str(self):
         """ ksajdfhb """
         # test output
         diction = {'updated_at': datetime.datetime(2020, 6, 27, 22, 9, 38, 171921).isoformat('T'), 'id': 'b3857b62-93fa-4bbe-97de-660506f7313b', 'created_at': datetime.datetime(2020, 6, 27, 22, 9, 38, 171827).isoformat('T')}
-        subject = BaseModel(**diction)
-        self.assertEqual(str(subject)[:53], "[BaseModel] (b3857b62-93fa-4bbe-97de-660506f7313b) {'")
+        subject = State(**diction)
+        self.assertEqual(str(subject)[:49], "[State] (b3857b62-93fa-4bbe-97de-660506f7313b) {'")
         del subject
 
     def test_save(self):
         """ s,jdfb """
         # test save
         time4 = datetime.datetime.now()
-        subject = BaseModel()
+        subject = State()
         time3 = datetime.datetime.now()
         json = ""
         if os.path.exists("file.json"):
@@ -112,8 +112,8 @@ class TestBaseModel(unittest.TestCase):
     def test_to_dict(self):
         """ alksfh """
         # test to_dict
-        diction = {'__class__': 'BaseModel', 'updated_at': datetime.datetime(2020, 6, 27, 22, 9, 38, 171921).isoformat('T'), 'id': 'b3857b62-93fa-4bbe-97de-660506f7313b', 'created_at': datetime.datetime(2020, 6, 27, 22, 9, 38, 171827).isoformat('T')}
-        subject = BaseModel(**diction)
+        diction = {'__class__': 'State', 'updated_at': datetime.datetime(2020, 6, 27, 22, 9, 38, 171921).isoformat('T'), 'id': 'b3857b62-93fa-4bbe-97de-660506f7313b', 'created_at': datetime.datetime(2020, 6, 27, 22, 9, 38, 171827).isoformat('T')}
+        subject = State(**diction)
 
         # check return
         self.assertIsNot(subject.to_dict(), subject.__dict__)
