@@ -61,19 +61,14 @@ class HBNBCommand(cmd.Cmd):
 
                 # Breakup the string into a list of strings
                 l_of_str = self.parse(cleanup)
-
                 if len(l_of_str) == 1:
                     final_str = l_of_str[1]
-
                 elif len(l_of_str) >= 1:
                     final_str = l_of_str[1] + ' ' + l_of_str[0]
-
                 if len(l_of_str) >= 3:
                     for strings in l_of_str[2:]:
-                        finalstr += strings + ' '
-
+                        finalstr += ' ' + strings
                 return finalstr
-
             else:
                 return arg
 
