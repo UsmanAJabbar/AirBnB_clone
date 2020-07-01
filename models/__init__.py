@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+""" a;lksjf """
+
 from models.engine.file_storage import FileStorage
 
 storage = FileStorage()
