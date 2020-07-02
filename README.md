@@ -24,20 +24,38 @@ The console could be executes by simply invoking it in the terminal
 ```
 ## Supported Commands & Usage
 The console comes with a number of unique commands that would help you parse through the data. Some of the commnads supported by the console are:
-- help
-	This command allows you to view help for any command below and also showcases usage examples.
-- quit / EOF
-	These commands allow you to exit the console.
-- create
-	This command allows you to create a given data structure of any class, given that it exists. Upon successful creation, the console prints out the unique ID generated for the very object it just created. For more info, run `help create' in the console.
-- show
-	This command allows you to show a specific object that may or may not be present. For more info, run `help show` in the console.
-- destroy
-	This command allows you to destroy a specific object that may or may not be present. For more info, run `help destroy` in the console.
-- all
-	This command allows you tou view all the objects present. However, the all command also accepts an additional argument if one needs to view all the objects of a given class. For more info, run `help all` in the console.
-- update
-	This command allows you to update attributes of a specific object given that may or may not be present. For more info, run `help update` in the console.
+- help | This command allows you to view help for any command below and also showcases usage examples.
+```
+help create
+```
+- quit / EOF | These commands allow you to exit the console.
+```
+quit | EOF
+```
+- create | This command allows you to create a given data structure of any class, given that it exists. Upon successful creation, the console prints out the unique ID generated for the very object it just created. For more info, run `help create' in the console.
+```
+create City
+```
+- show | This command allows you to show a specific object that may or may not be present. For more info, run `help show` in the console.
+```
+show BaseModel 8fc93a0c-3b96-4af4-abf4-e40311533c90
+```
+- destroy | This command allows you to destroy a specific object that may or may not be present. For more info, run `help destroy` in the console.
+```
+destroy BaseModel 8fc93a0c-3b96-4af4-abf4-e40311533c90
+```
+- all | This command allows you tou view all the objects present. However, the all command also accepts an additional argument if one needs to view all the objects of a given class. For more info, run `help all` in the console.
+```
+all
+```
+or
+```
+all User
+```
+- update | This command allows you to update attributes of a specific object given that may or may not be present. For more info, run `help update` in the console.
+```
+update BaseModel 8fc93a0c-3b96-4af4-abf4-e40311533c90 message 'just a random text dummy'
+```
 
 ## Files
 |           FILE NAME           |                                             DESCRIPTION                                            |
@@ -50,29 +68,33 @@ The console comes with a number of unique commands that would help you parse thr
 
 ```
 AirBnB_clone$ ls -l
-├── AUTHORS
-├── console.py
-├── file.json
-├── main_files
-│   ├── test_base_model_dict.py
-│   ├── test_base_model.py
-│   ├── test_save_reload_base_model.py
-│   └── test_save_reload_user.py
-├── models
-│   ├── amenity.py
-│   ├── base_model.py
-│   ├── city.py
-│   ├── engine
-│   │   ├── file_storage.py
-│   │   ├── __init__.py
-│   │   └── README.md
-│   ├── __init__.py
-│   ├── place.py
-│   ├── README.md
-│   ├── review.py
-│   ├── state.py
-│   └── user.py
-├── README.md
-└── tests
-    └── README.md
+ AUTHORS
+ console.py
+ file.json
+ main_files
+    test_base_model_dict.py
+    test_base_model.py
+    test_save_reload_base_model.py
+    test_save_reload_user.py
+ models
+    amenity.py
+    base_model.py
+    city.py
+    engine
+       file_storage.py
+       __init__.py
+       README.md
+    __init__.py
+    place.py
+    README.md
+    review.py
+    state.py
+    user.py
+ README.md
+ tests
+     README.md
 ```
+
+### AUTHOR
+- Sean Taylor - sean.taylor[at]holbertonschool.com
+- Usman Abdul Jabbar - usmangta[at]gmail.com | UsmanJabbar.com
