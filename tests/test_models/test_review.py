@@ -14,8 +14,14 @@ class TestReview(unittest.TestCase):
         """ ksajhfdg """
         subject = Review()
         self.assertTrue(hasattr(subject, "place_id"))
+        if hasattr(subject, "place_id"):
+            self.assertIsInstance(subject.place_id, str)
         self.assertTrue(hasattr(subject, "user_id"))
+        if hasattr(subject, "user_id"):
+            self.assertIsInstance(subject.user_id, str)
         self.assertTrue(hasattr(subject, "text"))
+        if hasattr(subject, "text"):
+            self.assertIsInstance(subject.text, str)
 
     def test_init_blank(self):
         """  sakujjhdfkasjdhf """

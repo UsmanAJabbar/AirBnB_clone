@@ -14,6 +14,8 @@ class TestAmenity(unittest.TestCase):
         """ skjdfhg """
         subject = Amenity()
         self.assertTrue(hasattr(subject, "name"))
+        if hasattr(subject, "name"):
+            self.assertIsInstance(subject.name, str)
 
     def test_init_blank(self):
         """  sakujjhdfkasjdhf """

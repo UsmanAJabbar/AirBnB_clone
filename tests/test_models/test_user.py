@@ -14,9 +14,17 @@ class TestUser(unittest.TestCase):
         """ skjdfhg """
         subject = User()
         self.assertTrue(hasattr(subject, "email"))
+        if hasattr(subject, "email"):
+            self.assertIsInstance(subject.email, str)
         self.assertTrue(hasattr(subject, "password"))
+        if hasattr(subject, "password"):
+            self.assertIsInstance(subject.password, str)
         self.assertTrue(hasattr(subject, "first_name"))
+        if hasattr(subject, "first_name"):
+            self.assertIsInstance(subject.first_name, str)
         self.assertTrue(hasattr(subject, "last_name"))
+        if hasattr(subject, "last_name"):
+            self.assertIsInstance(subject.last_name, str)
 
     def test_init_blank(self):
         """  sakujjhdfkasjdhf """

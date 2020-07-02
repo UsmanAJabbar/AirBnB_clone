@@ -14,16 +14,38 @@ class TestPlace(unittest.TestCase):
         """ skjdfhg """
         subject = Place()
         self.assertTrue(hasattr(subject, "name"))
+        if hasattr(subject, "name"):
+            self.assertIsInstance(subject.name, str)
         self.assertTrue(hasattr(subject, "city_id"))
+        if hasattr(subject, "city_id"):
+            self.assertIsInstance(subject.city_id, str)
         self.assertTrue(hasattr(subject, "user_id"))
+        if hasattr(subject, "user_id"):
+            self.assertIsInstance(subject.user_id, str)
         self.assertTrue(hasattr(subject, "description"))
+        if hasattr(subject, "description"):
+            self.assertIsInstance(subject.description, str)
         self.assertTrue(hasattr(subject, "number_rooms"))
+        if hasattr(subject, "number_rooms"):
+            self.assertIsInstance(subject.number_rooms, int)
         self.assertTrue(hasattr(subject, "number_bathrooms"))
+        if hasattr(subject, "number_bathrooms"):
+            self.assertIsInstance(subject.number_bathrooms, int)
         self.assertTrue(hasattr(subject, "max_guest"))
+        if hasattr(subject, "max_guest"):
+            self.assertIsInstance(subject.max_guest, int)
         self.assertTrue(hasattr(subject, "price_by_night"))
+        if hasattr(subject, "price_by_night"):
+            self.assertIsInstance(subject.price_by_night, int)
         self.assertTrue(hasattr(subject, "latitude"))
+        if hasattr(subject, "latitude"):
+            self.assertIsInstance(subject.latitude, float)
         self.assertTrue(hasattr(subject, "longitude"))
+        if hasattr(subject, "longitude"):
+            self.assertIsInstance(subject.longitude, float)
         self.assertTrue(hasattr(subject, "amenity_ids"))
+        if hasattr(subject, "amenity_ids"):
+            self.assertIsInstance(subject.amenity_ids, list)
 
     def test_init_blank(self):
         """  sakujjhdfkasjdhf """

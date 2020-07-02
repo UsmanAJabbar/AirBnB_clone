@@ -14,7 +14,11 @@ class TestCity(unittest.TestCase):
         """ skjdfhg """
         subject = City()
         self.assertTrue(hasattr(subject, "name"))
+        if hasattr(subject, "name"):
+            self.assertIsInstance(subject.name, str)
         self.assertTrue(hasattr(subject, "state_id"))
+        if hasattr(subject, "state_id"):
+            self.assertIsInstance(subject.state_id, str)
 
     def test_init_blank(self):
         """  sakujjhdfkasjdhf """

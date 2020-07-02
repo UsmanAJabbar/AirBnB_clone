@@ -14,6 +14,8 @@ class TestState(unittest.TestCase):
         """ skjdfhg """
         subject = State()
         self.assertTrue(hasattr(subject, "name"))
+        if hasattr(subject, "name"):
+            self.assertIsInstance(subject.name, str)
 
     def test_init_blank(self):
         """  sakujjhdfkasjdhf """
