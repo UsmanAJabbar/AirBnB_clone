@@ -68,33 +68,33 @@ update BaseModel 8fc93a0c-3b96-4af4-abf4-e40311533c90 message 'just a random tex
 
 ```
 AirBnB_clone$ ls -l
- AUTHORS
- console.py
- file.json
- main_files
-    test_base_model_dict.py
-    test_base_model.py
-    test_save_reload_base_model.py
-    test_save_reload_user.py
- models
-    amenity.py
-    base_model.py
-    city.py
-    engine
-       file_storage.py
-       __init__.py
-       README.md
-    __init__.py
-    place.py
-    README.md
-    review.py
-    state.py
-    user.py
- README.md
- tests
-     README.md
+├── AUTHORS
+├── console.py
+├── file.json
+├── main_files
+│   ├── test_base_model_dict.py
+│   ├── test_base_model.py
+│   ├── test_save_reload_base_model.py
+│   └── test_save_reload_user.py
+├── models
+│   ├── amenity.py
+│   ├── base_model.py
+│   ├── city.py
+│   ├── engine
+│   │   ├── file_storage.py
+│   │   ├── __init__.py
+│   │   └── README.md
+│   ├── __init__.py
+│   ├── place.py
+│   ├── README.md
+│   ├── review.py
+│   ├── state.py
+│   └── user.py
+├── README.md
+└── tests
+    └── README.md
 ```
 
-### AUTHOR
+### AUTHORS
 - Sean Taylor - sean.taylor[at]holbertonschool.com
 - Usman Abdul Jabbar - usmangta[at]gmail.com | UsmanJabbar.com
