@@ -1,0 +1,20 @@
+article {
+    border: solid 1px #FF5A5F;
+    width: 390px;
+    margin: 20px;
+    padding: 20px;
+    text-align: center;
+    border-radius: 4px;
+    display: inline-block;
+}
+article.bringItToTheDamnCenter {
+    display: block;
+    margin: 20px auto;
+}
+.places h1, .places h2 {
+    font-size: 30px;
+}
+.places h1 {
+	margin-left: 20px;
+	margin-bottom: 0;
+}
