@@ -20,7 +20,7 @@ article.bringItToTheDamnCenter {
 }
 
 .Name_Plus_Price_Side_by_Side {
-    display: inline-flex;
+    display: flex;
 }
 
 .price_by_night {
@@ -48,17 +48,35 @@ article.bringItToTheDamnCenter {
 	width: 100px;
 	background: no-repeat;
 }
-.max_guests {
-	background-image: url(../images/icon_group.png);
+.guests-logo {
+    background-image: url(../images/icon_group.png);
+    width: 100px;
+    display: inline-flex;
+    height: 55px;
+    background-repeat: no-repeat;
+    background-position: center;
 }
-.number_rooms {
+.rooms-logo {
 	background-image: url(../images/icon_bed.png);
+    width: 100px;
+    display: inline-flex;
+    height: 55px;
+    background-repeat: no-repeat;
+    background-position: center;
 }
-.number_bathrooms {
+.bathrooms-logo {
 	background-image: url(../images/icon_bath.png);
+    width: 100px;
+    display: inline-flex;
+    height: 55px;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 /* Owner / Description Custom CSS */
 .pushItToTheDamnLeft {
     text-align: justify;
+}
+.PropertyName {
+    width: 75%;
 }
