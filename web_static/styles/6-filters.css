@@ -57,6 +57,7 @@
 	border-radius: 4px;
 	background: #FAFAFA;
 	display: none;
+	position: relative;
 }
 .list h2 {
 	margin: 0;
@@ -75,4 +76,5 @@
 
 .popover {
 	display: none;
+	position: relative;
 }
